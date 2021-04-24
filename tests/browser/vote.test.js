@@ -65,7 +65,7 @@ test('Post up voted on category page.', async () => {
 	 * in this scenario, we have to manually tell Playwright to wait until the
 	 * element (in this case, the element that contains the post votes) changes.
 	 */
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('1');
 
@@ -93,7 +93,7 @@ test('Post up voted on post page.', async () => {
 	expect(await postVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.post-upvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('1');
 
@@ -120,7 +120,7 @@ test('Post down voted on category page.', async () => {
 	expect(await postVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.post-downvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("-1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('-1');
 
@@ -148,7 +148,7 @@ test('Post down voted on post page.', async () => {
 	expect(await postVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.post-downvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("-1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('-1');
 
@@ -198,12 +198,12 @@ test('Post up voted then down voted on category page.', async () => {
 	expect(await postVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.post-upvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('1');
 
 	await page.click(`.post-downvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("-1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('-1');
 });
@@ -220,12 +220,12 @@ test('Post up voted then down voted on post page.', async () => {
 	expect(await postVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.post-upvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('1');
 
 	await page.click(`.post-downvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("-1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('-1');
 });
@@ -241,12 +241,12 @@ test('Post down voted then up voted on category page.', async () => {
 	expect(await postVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.post-downvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("-1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('-1');
 
 	await page.click(`.post-upvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('1');
 });
@@ -263,12 +263,12 @@ test('Post down voted then up voted on post page.', async () => {
 	expect(await postVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.post-downvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("-1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('-1');
 
 	await page.click(`.post-upvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('1');
 });
@@ -284,12 +284,12 @@ test('Post up voted then unvoted on category page.', async () => {
 	expect(await postVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.post-upvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('1');
 
 	await page.click(`.post-upvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("0")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("0")`);
 
 	expect(await postVotesElement.innerText()).toMatch('0');
 });
@@ -306,12 +306,12 @@ test('Post up voted then unvoted on post page.', async () => {
 	expect(await postVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.post-upvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('1');
 
 	await page.click(`.post-upvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("0")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("0")`);
 
 	expect(await postVotesElement.innerText()).toMatch('0');
 });
@@ -327,12 +327,12 @@ test('Post down voted then unvoted on category page.', async () => {
 	expect(await postVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.post-downvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("-1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('-1');
 
 	await page.click(`.post-downvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("0")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("0")`);
 
 	expect(await postVotesElement.innerText()).toMatch('0');
 });
@@ -349,12 +349,12 @@ test('Post down voted then unvoted on post page.', async () => {
 	expect(await postVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.post-downvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("-1")`);
 
 	expect(await postVotesElement.innerText()).toMatch('-1');
 
 	await page.click(`.post-downvote-button[post-id="${post.getId()}"]`);
-	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-is("0")`);
+	await page.waitForSelector(`.post-votes[post-id="${post.getId()}"]:text-matches("0")`);
 
 	expect(await postVotesElement.innerText()).toMatch('0');
 });
@@ -434,7 +434,7 @@ test('Comment up voted on post page.', async () => {
 	 * in this scenario, we have to manually tell Playwright to wait until the
 	 * element (in this case, the element that contains the comment votes) changes.
 	 */
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('1');
 
@@ -463,7 +463,7 @@ test('Comment up voted on comment page.', async () => {
 	expect(await commentVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.comment-upvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('1');
 
@@ -491,7 +491,7 @@ test('Comment down voted on post page.', async () => {
 	expect(await commentVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.comment-downvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("-1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('-1');
 
@@ -520,7 +520,7 @@ test('Comment down voted on comment page.', async () => {
 	expect(await commentVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.comment-downvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("-1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('-1');
 
@@ -573,12 +573,12 @@ test('Comment up voted then down voted on post page.', async () => {
 	expect(await commentVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.comment-upvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('1');
 
 	await page.click(`.comment-downvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("-1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('-1');
 });
@@ -596,12 +596,12 @@ test('Comment up voted then down voted on comment page.', async () => {
 	expect(await commentVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.comment-upvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('1');
 
 	await page.click(`.comment-downvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("-1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('-1');
 });
@@ -618,12 +618,12 @@ test('Comment down voted then up voted on post page.', async () => {
 	expect(await commentVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.comment-downvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("-1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('-1');
 
 	await page.click(`.comment-upvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('1');
 });
@@ -641,12 +641,12 @@ test('Comment down voted then up voted on comment page.', async () => {
 	expect(await commentVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.comment-downvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("-1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('-1');
 
 	await page.click(`.comment-upvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('1');
 });
@@ -663,12 +663,12 @@ test('Comment up voted then unvoted on post page.', async () => {
 	expect(await commentVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.comment-upvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('1');
 
 	await page.click(`.comment-upvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("0")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("0")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('0');
 });
@@ -686,12 +686,12 @@ test('Comment up voted then unvoted on comment page.', async () => {
 	expect(await commentVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.comment-upvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('1');
 
 	await page.click(`.comment-upvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("0")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("0")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('0');
 });
@@ -708,12 +708,12 @@ test('Comment down voted then unvoted on post page.', async () => {
 	expect(await commentVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.comment-downvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("-1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('-1');
 
 	await page.click(`.comment-downvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("0")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("0")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('0');
 });
@@ -731,12 +731,12 @@ test('Comment down voted then unvoted on comment page.', async () => {
 	expect(await commentVotesElement.innerText()).toMatch('0');
 
 	await page.click(`.comment-downvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("-1")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("-1")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('-1');
 
 	await page.click(`.comment-downvote-button[comment-id="${comment.getId()}"]`);
-	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-is("0")`);
+	await page.waitForSelector(`.comment-votes[comment-id="${comment.getId()}"]:text-matches("0")`);
 
 	expect(await commentVotesElement.innerText()).toMatch('0');
 });

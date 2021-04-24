@@ -66,7 +66,7 @@ test('Post bookmarked successfully.', async () => {
 	 * in this scenario, we have to manually tell Playwright to wait until the
 	 * element (in this case, the element that contains the bookmark button text) changes.
 	 */
-	await page.waitForSelector('#post-bookmark-button:text-is("Unbookmark Post")');
+	await page.waitForSelector('#post-bookmark-button:text-matches("Unbookmark Post")');
 
 	expect(await bookmarkButton.innerText()).toMatch('Unbookmark Post');
 
@@ -97,7 +97,7 @@ test('Post unbookmarked successfully.', async () => {
 	expect(await bookmarkButton.innerText()).toMatch('Unbookmark Post');
 
 	await bookmarkButton.click();
-	await page.waitForSelector('#post-bookmark-button:text-is("Bookmark Post")');
+	await page.waitForSelector('#post-bookmark-button:text-matches("Bookmark Post")');
 
 	expect(await bookmarkButton.innerText()).toMatch('Bookmark Post');
 
@@ -144,12 +144,12 @@ test('Post bookmarked by multiple users.', async () => {
 
 		if (Math.random() < 0.5) {
 			await bookmarkButton.click();
-			await page.waitForSelector('#post-bookmark-button:text-is("Unbookmark Post")');
+			await page.waitForSelector('#post-bookmark-button:text-matches("Unbookmark Post")');
 			postIsBookmarked[i] = true;
 
 			if (Math.random() < 0.25) {
 				await bookmarkButton.click();
-				await page.waitForSelector('#post-bookmark-button:text-is("Bookmark Post")');
+				await page.waitForSelector('#post-bookmark-button:text-matches("Bookmark Post")');
 				postIsBookmarked[i] = false;
 			}
 		}
@@ -193,7 +193,7 @@ test('Comment bookmarked successfully.', async () => {
 	expect(await bookmarkButton.innerText()).toMatch('Bookmark Comment');
 
 	await bookmarkButton.click();
-	await page.waitForSelector(`.comment[comment-id="${comment.getId()}"] .comment-bookmark-button:text-is("Unbookmark Comment")`);
+	await page.waitForSelector(`.comment[comment-id="${comment.getId()}"] .comment-bookmark-button:text-matches("Unbookmark Comment")`);
 
 	expect(await bookmarkButton.innerText()).toMatch('Unbookmark Comment');
 
@@ -225,7 +225,7 @@ test('Comment unbookmarked successfully.', async () => {
 	expect(await bookmarkButton.innerText()).toMatch('Unbookmark Comment');
 
 	await bookmarkButton.click();
-	await page.waitForSelector(`.comment[comment-id="${comment.getId()}"] .comment-bookmark-button:text-is("Bookmark Comment")`);
+	await page.waitForSelector(`.comment[comment-id="${comment.getId()}"] .comment-bookmark-button:text-matches("Bookmark Comment")`);
 
 	expect(await bookmarkButton.innerText()).toMatch('Bookmark Comment');
 
@@ -272,12 +272,12 @@ test('Comment bookmarked by multiple users.', async () => {
 
 		if (Math.random() < 0.5) {
 			await bookmarkButton.click();
-			await page.waitForSelector(`.comment[comment-id="${comment.getId()}"] .comment-bookmark-button:text-is("Unbookmark Comment")`);
+			await page.waitForSelector(`.comment[comment-id="${comment.getId()}"] .comment-bookmark-button:text-matches("Unbookmark Comment")`);
 			commentIsBookmarked[i] = true;
 
 			if (Math.random() < 0.25) {
 				await bookmarkButton.click();
-				await page.waitForSelector(`.comment[comment-id="${comment.getId()}"] .comment-bookmark-button:text-is("Bookmark Comment")`);
+				await page.waitForSelector(`.comment[comment-id="${comment.getId()}"] .comment-bookmark-button:text-matches("Bookmark Comment")`);
 				commentIsBookmarked[i] = false;
 			}
 		}
